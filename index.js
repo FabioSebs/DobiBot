@@ -15,12 +15,13 @@ client.on("message", msg => {
 	if (msg.content === '!dobi'){
 		voiceChannel.join()
 		.then((connection)=>{
-			
+			const dispatcher = connection.play('./DEONGODTOP.mp3')
+			dispatcher.on("end", end => voiceChannel.leave())
 		})
 		.catch(e=>console.log(e))
 	}
 
-	msg.content === '!leave' ? voiceChannel.leave() : null
+	// msg.content === '!leave' ? voiceChannel.leave() : null
 })
 
 client.login(process.env.TOKEN)
