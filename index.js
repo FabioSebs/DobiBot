@@ -8,6 +8,7 @@ const path = require('path')
 const audio = path.join(__dirname, 'DEONGODTOP.mp3')
 const textCommands = require('./textCommands')
 
+
 // Once DobiBot Connects
 client.on("ready",()=>{
 	console.log(`Logged in as ${client.user.tag}`)
@@ -15,8 +16,15 @@ client.on("ready",()=>{
 
 //Handles any message commands
 client.on("message", msg => {
-	textCommands.dobiAudio(msg)
-	textCommands.dobiGreeting(msg)
+	try{
+		textCommands.dobiAudio(msg)
+		textCommands.dobiGreeting(msg)
+		textCommands.listCommands(msg)
+	}
+	
+	catch(e) {
+		console.error(e)
+	}
 	// msg.content === '!leave' ? voiceChannel.leave() : null
 })
 
