@@ -7,8 +7,9 @@ const audio1 = path.join(__dirname, 'DEONGODTOP.mp3')
 const audio2 = path.join(__dirname,'DEONDEFUSE.mp3')
 const audio3 = path.join(__dirname, 'DEONWEEB.mp3')
 const audio4 = path.join(__dirname, 'DARKKASUE1.mp3')
-let commandList;
+const audio5 = path.join(__dirname, "ANDREWRAGE.mp3")
 
+let commandList;
 
 const listCommands = (msg) => {
 	[...commandList] = ['!dobi', '!dobiDefuse', '!dobiWelcome', '!dobiCommands']
@@ -19,8 +20,7 @@ const listCommands = (msg) => {
 	} 
 }
 
-const dobiAudio = (msg) => { 
-	
+const dobiAudio = (msg) => { 	
     const voiceChannel = msg.member.voice.channel
     if (msg.content === "!dobi") {
         voiceChannel.join()
@@ -64,6 +64,15 @@ const dobiAudio = (msg) => {
 	    })
 	    .catch(e=>console.log(e))
     }
+	if (msg.content === '!dobiFatWomen') {
+		voiceChannel.join()
+		.then(connection => {
+			const dispatcher = connection.play(audio5)
+			setTimeout(() => {
+				voiceChannel.leave()
+			}, 4000)
+		})
+	}
 }
 
 const dobiGreeting = (msg) => {
