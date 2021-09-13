@@ -7,7 +7,9 @@ require('dotenv').config();  	//Dotenv Import
 const path = require('path')
 const audio = path.join(__dirname, 'DEONGODTOP.mp3')
 const textCommands = require('./textCommands')
+const { RiotValorantApi, Regions} = require("riot-valorant-api");
 
+const valorantAPI = new RiotValorantApi(process.env.VALO_TOKEN)
 
 // Once DobiBot Connects
 client.on("ready",()=>{
