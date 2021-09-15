@@ -3,7 +3,8 @@
     "@discordjs/opus": "discordjs/opus",
     "discord.js": "^12.5.3",
     "discord.js-commando": "^0.12.3",
-    "dotenv": "^10.0.0"
+    "dotenv": "^10.0.0",
+    "riot-valorant-api": "^0.2.3"
   },
   "type": "commonjs"
 }
