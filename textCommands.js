@@ -5,16 +5,14 @@ require('dotenv').config();  	//Dotenv Import
 const path = require('path')
 const audio1 = path.join(__dirname, 'DEONGODTOP.mp3')
 const audio2 = path.join(__dirname,'DEONDEFUSE.mp3')
-const audio3 = path.join(__dirname, 'DEONWEEB.mp3')
-const audio4 = path.join(__dirname, 'DARKKASUE1.mp3')
+const audio3 = path.join(__dirname, 'DARKKASUE1.mp3')
 const audio5 = path.join(__dirname, "ANDREWRAGE.mp3")
-
-let commandList;
+const Commands = require('./commandList')
 
 const listCommands = (msg) => {
-	[...commandList] = ['!dobi', '!dobiDefuse', '!dobiWelcome', '!dobiCommands']
+	Commands.addToList(['!dobiDefuse', '!dobiWelcome', '!dobiCommands', '!dobiFatWomen', '!dobi' , '!dobiKasue' , ])
 	if (msg.content === '!dobiCommands') {
-		commandList.forEach(i => {
+		Commands.commandList.forEach(i => {
 			msg.reply(i)
 		})
 	} 
@@ -43,7 +41,7 @@ const dobiAudio = (msg) => {
 	    .catch(e=>console.log(e))
     }
 
-	if (msg.content === '!dobiWeeb') {
+	if (msg.content === '!dobiKasue') {
 	    voiceChannel.join()
 	    .then((connection)=> {
 		    const dispatcher = connection.play(audio3)
@@ -54,16 +52,6 @@ const dobiAudio = (msg) => {
 	    .catch(e=>console.log(e))
     }
 
-	if (msg.content === '!dobiKasue') {
-	    voiceChannel.join()
-	    .then((connection)=> {
-		    const dispatcher = connection.play(audio4)
-		    setTimeout(()=> {
-			    voiceChannel.leave()
-		    }, 5000)
-	    })
-	    .catch(e=>console.log(e))
-    }
 	if (msg.content === '!dobiFatWomen') {
 		voiceChannel.join()
 		.then(connection => {

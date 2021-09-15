@@ -9,13 +9,13 @@ const audio = path.join(__dirname, 'DEONGODTOP.mp3')
 const textCommands = require('./textCommands')
 const { RiotValorantApi, Regions, Locales, Queue } = require("riot-valorant-api");
 const axios = require('axios');
-
 const valorantAPI = new RiotValorantApi(process.env.VALO_TOKEN, Regions.NORTH_AMERICA)
 
 // Once DobiBot Connects
 client.on("ready",()=>{
  console.log(`Logged in as ${client.user.tag}`)
 })
+
 
 //Handles any message commands
 client.on("message", msg => {
