@@ -14,7 +14,7 @@ const { kill } = require('process');
 
 //Command List 
 const listCommands = (msg) => {
-	const commandList = ['!dobiDefuse', '!dobiWelcome', '!dobiCommands', '!dobiFatWomen', '!dobi', '!dobiKasue', '!dobiRandom', '!dobiRank{name}']
+	const commandList = ['!dobiDefuse', '!dobiWelcome', '!dobiCommands', '!dobiFatWomen', '!dobi', '!dobiKasue', '!dobiRandom', '!dobiRankFabrzy/Santos/Matoose/Jody/Mex', '!dobiMHFabrzy/Santos/Matoose/Jody/Mex']
 	if (msg.content === '!dobiCommands') {
 		commandList.forEach(i => {
 			msg.channel.send(`-${i}`)
@@ -174,7 +174,7 @@ const dobiRank = async (msg) => {
 }
 
 const showMatchHistory = async (msg) => {
-	if (msg.content === '!dobiMHFab') {
+	if (msg.content === '!dobiMHFabrzy') {
 		try {
 			const match = await axios.get(`https://api.henrikdev.xyz/valorant/v3/matches/NA/${players.Fabio.name}/${players.Fabio.tag}`)
 			// console.log(match.data.data[0].teams)
@@ -238,7 +238,7 @@ const showMatchHistory = async (msg) => {
 		}
 	}
 
-	if (msg.content === '!dobiMHFrank') {
+	if (msg.content === '!dobiMHSantos') {
 		try {
 			const match = await axios.get(`https://api.henrikdev.xyz/valorant/v3/matches/NA/${players.Frankie.name}/${players.Frankie.tag}`)
 			// console.log(match.data.data[0].teams)
