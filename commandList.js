@@ -6,6 +6,6 @@ module.exports = class Commands {
 	}
 	
 	addToList(command){
-		this.commandList.concat(command)
+		this.commandList = this.commandList.concat(command)
 	}
 }

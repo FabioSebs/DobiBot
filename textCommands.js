@@ -7,17 +7,19 @@ const audio1 = path.join(__dirname, 'DEONGODTOP.mp3')
 const audio2 = path.join(__dirname,'DEONDEFUSE.mp3')
 const audio3 = path.join(__dirname, 'DARKKASUE1.mp3')
 const audio5 = path.join(__dirname, "ANDREWRAGE.mp3")
-const Commands = require('./commandList')
+const audioList = [audio1, audio2, audio3, audio5]
 
+//Command List 
 const listCommands = (msg) => {
-	Commands.addToList(['!dobiDefuse', '!dobiWelcome', '!dobiCommands', '!dobiFatWomen', '!dobi' , '!dobiKasue' , ])
+	const commandList = ['!dobiDefuse', '!dobiWelcome', '!dobiCommands', '!dobiFatWomen', '!dobi' , '!dobiKasue', '!dobiRandom']
 	if (msg.content === '!dobiCommands') {
-		Commands.commandList.forEach(i => {
-			msg.reply(i)
+		commandList.forEach(i => {
+			msg.channel.send(`-${i}`)
 		})
 	} 
 }
 
+// Voice Commands
 const dobiAudio = (msg) => { 	
     const voiceChannel = msg.member.voice.channel
     if (msg.content === "!dobi") {
@@ -61,8 +63,20 @@ const dobiAudio = (msg) => {
 			}, 4000)
 		})
 	}
+
+	if (msg.content === '!dobiRandom') {
+		voiceChannel.join()
+		.then(connection => {
+			const randomVideo = Math.floor(Math.random() * audioList.length)
+			const dispatcher = connection.play(audioList[randomVideo])
+			setTimeout(() => {
+				voiceChannel.leave()
+			}, 17500)
+		})
+	}
 }
 
+// Introducing DobiBot
 const dobiGreeting = (msg) => {
     if(msg.content==='!dobiWelcome') {
         msg.reply("Hey whats up it's Deon Johnson!")
