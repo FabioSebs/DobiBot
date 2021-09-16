@@ -20,6 +20,10 @@ const players = {
     Antonio: {
         name: "MexZombz",
         tag: "1984"
-    }
+   },
+    Tyrel: {
+	name : "Superbananaman",
+        tag: "3541"    
+    }	
 }
 module.exports = players;
