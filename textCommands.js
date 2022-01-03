@@ -3,10 +3,11 @@ const Discord = require('discord.js')     //Discord Api Import
 const client = new Discord.Client({ intents: ["GUILDS", "GUILD_MESSAGES"] })
 require('dotenv').config();  	//Dotenv Import
 const path = require('path')
-const audio1 = path.join(__dirname, 'DEONGODTOP.mp3')
-const audio2 = path.join(__dirname, 'DEONDEFUSE.mp3')
-const audio3 = path.join(__dirname, 'DARKKASUE1.mp3')
-const audio5 = path.join(__dirname, "ANDREWRAGE.mp3")
+const audio1 = path.join(__dirname, './audio/DEONGODTOP.mp3')
+const audio2 = path.join(__dirname, './audio/DEONDEFUSE.mp3')
+const audio3 = path.join(__dirname, './audio/DARKKASUE1.mp3')
+const audio4 = path.join(__dirname, './audio/DOBISUS.mp3')
+const audio5 = path.join(__dirname, "./audio/ANDREWRAGE.mp3")
 const audioList = [audio1, audio2, audio3, audio5]
 const axios = require('axios');
 const players = require('./players');
@@ -85,6 +86,16 @@ const dobiAudio = (msg) => {
 				setTimeout(() => {
 					voiceChannel.leave()
 				}, 4000)
+			})
+	}
+
+	if (msg.content === '!dobiSus') {
+		voiceChannel.join()
+			.then(connection => {
+				const dispatcher = connection.play(audio4)
+				setTimeout(() => {
+					voiceChannel.leave()
+				}, 12500)
 			})
 	}
 
@@ -177,6 +188,19 @@ const dobiRank = async (msg) => {
 			const placement = rank.data.data.currenttierpatched
 			const elo = rank.data.data.elo
 			msg.channel.send(`${players.Tyrel.name}#${players.Tyrel.tag} - ${placement} Elo: ${elo}`)
+		} catch (error) {
+			console.log(error)
+			return error
+		}
+	}
+
+	if (msg.content === '!dobiRankGus') {
+		try {
+			const rank = await axios.get(`https://api.henrikdev.xyz/valorant/v1/mmr/NA/${players.Gusbus.name}/${players.Gusbus.tag}`)
+			//Variables
+			const placement = rank.data.data.currenttierpatched
+			const elo = rank.data.data.elo
+			msg.channel.send(`${players.Gusbus.name}#${players.Gusbus.tag} - ${placement} Elo: ${elo}`)
 		} catch (error) {
 			console.log(error)
 			return error
@@ -375,6 +399,39 @@ const showMatchHistory = async (msg) => {
 			console.log(error)
 		}
 	}
+
+	if (msg.content === '!dobiMHGus') {
+		try {
+			const match = await axios.get(`https://api.henrikdev.xyz/valorant/v3/matches/NA/${players.Gusbus.name}/${players.Gusbus.tag}`)
+			// console.log(match.data.data[0].teams)
+			let matchStats = match.data.data[0].players.all_players
+			let character, kills, deaths, assists, team, hasWon;
+			matchStats.forEach((i)=>{
+				if(i.name === players.Frankie.name){
+					character = i.character
+					kills = i.stats.kills
+					deaths = i.stats.deaths
+					assists = i.stats.assists
+					team = i.team.toLowerCase()
+				}
+			})
+			
+			let teamWon = match.data.data[0].teams
+
+			teamWon.red.has_won ? teamWon = 'red' : teamWon = 'blue'
+
+			if (team === teamWon) {
+				hasWon = "WON"
+			}
+			else { hasWon = "LOST" }
+
+			msg.channel.send(`${players.Gusbus.name}'s Last Game \n Game: ${hasWon} , KDA - ${kills}/${deaths}/${assists}`)
+
+		} catch (error) {
+			console.log(error)
+		}
+	}
+
 }
 
 exports.dobiAudio = dobiAudio

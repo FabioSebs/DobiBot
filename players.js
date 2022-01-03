@@ -12,7 +12,7 @@ const players = {
     Frankie: {
         name: "ImNotSantos",
         tag: "TTV"
-    }, 
+    },
     Jodel: {
         name: "Jodaddy",
         tag: "7654"
@@ -20,10 +20,14 @@ const players = {
     Antonio: {
         name: "MexZombz",
         tag: "1984"
-   },
+    },
     Tyrel: {
-	name : "Superbananaman",
-        tag: "3541"    
-    }	
+        name: "Superbananaman",
+        tag: "3541"
+    },
+    Gusbus: {
+        name: "Gusbus",
+        tag:"OVO"
+    }
 }
 module.exports = players;
