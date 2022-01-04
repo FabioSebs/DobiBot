@@ -29,15 +29,14 @@ client.on("message", msg => {
 })
 
 //Voice Channel States
-client.on('voiceStateUpdate', (old, recent) => {
-	console.log('old - \n' + old)
-	console.log('new - \n' + recent)
+client.on('voiceStateUpdate', (_, recent) => {
+	console.log('User ID - \n' + recent)
 	// let userId = voiceIds.Fabio.toString().slice(0, 13)
 	let voiceId = recent.id.slice(0, 13)
 	let dobiIntro = false;
 	let userIntro = null;
 	voiceIds.forEach(i => {
-		if (i.id.toString().slice(0,13) === voiceId) {
+		if (i.id.toString().slice(0, 13) === voiceId) {
 			dobiIntro = true;
 			userIntro = i.intro;
 		}
@@ -54,7 +53,7 @@ client.on('voiceStateUpdate', (old, recent) => {
 					}, 9000)
 				})
 				.then(x => {
-					voiceIds = voiceIds.filter(i => i.id.toString().slice(0,13)!==voiceId)
+					voiceIds = voiceIds.filter(i => i.id.toString().slice(0, 13) !== voiceId)
 				})
 			console.log(recent.channelID)
 		} catch (error) {
